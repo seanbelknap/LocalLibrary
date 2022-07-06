@@ -10,18 +10,13 @@ function partitionBooksByBorrowedStatus(books) {
 }
 
 function getBorrowersForBook(book, accounts) {
-  let result = [];
-
-  for(let i = 10; i > 0; i--){
-    let borrows = book.borrows[i];
-    for(let key in accounts){
-      if(borrows.id.includes(accounts[key].id)){
-       result.push({...borrows, ...accounts[key]})
-      }
+  return accounts.reduce((acc, account) => {
+    let borrowers = book.borrows.find(borrow => borrow.id === account.id)
+    if(borrowers){
+      acc.push({...borrowers, ...account})
     }
-  }
-  console.log(result);
-  return result;
+    return acc
+  }, [])
 }
 
 module.exports = {
