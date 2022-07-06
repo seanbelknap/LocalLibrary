@@ -32,7 +32,7 @@ function getMostCommonGenres(books) {
     if(!acc.includes(book.genre)) acc.push(book.genre)
     return acc
   }, [])
-  let genreNames = genreList(books, genre).map(genre => genreAndCount(genre));
+  let genreNames = genreList.map(genre => genreAndCount(genre));
   return _topFive(genreNames);
 }
 
@@ -50,7 +50,6 @@ function getMostPopularBooks(books) {
    if(!acc.includes(book.title)) acc.push(book.title)
     return acc
   }, [])
-  console.log(titlelist);
   let listNames = titlelist.map(title => bookAndCount(title));
   console.log(listNames);
   return _topFive(listNames);
